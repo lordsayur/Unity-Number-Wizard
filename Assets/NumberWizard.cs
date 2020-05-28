@@ -11,6 +11,7 @@ public class NumberWizard : MonoBehaviour
 
     void Start()
     {
+        _max += 1;
         Debug.Log("Selamat datang ke Setau Gaban.");
         Debug.Log("Cuba pilih numbur lapas tu jangan bagi tau...");
         Debug.Log($"Numbur paling basar: {_max}");
@@ -24,10 +25,16 @@ public class NumberWizard : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Debug.Log("Lagi Basar");
+            _min = _ourGuess;
+            _ourGuess = (_max + _min) / 2;
+            Debug.Log($"Okay, lagi basar atau damit dari {_ourGuess}");
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Debug.Log("Lagi Damit");
+            _max = _ourGuess;
+            _ourGuess = (_max + _min) / 2;
+            Debug.Log($"Okay, lagi basar atau damit dari {_ourGuess}");
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
