@@ -1,3 +1,4 @@
+﻿using System;
 using UnityEngine;
 
 public class NumberWizard : MonoBehaviour
@@ -44,14 +45,6 @@ public class NumberWizard : MonoBehaviour
         };
     }
 
-    public void PlayerRespond(string respond)
-    {
-        Debug.Log(respond);
-        if (respond == "Enggam!") return;
-
-        RespondToPlayer(respond);
-    }
-
     public int GetOurGuess()
     {
         return _numberWizardData.OurGuess;
@@ -73,8 +66,20 @@ public class NumberWizard : MonoBehaviour
         }
     }
 
+    public void PlayerRespond(string respond)
+    {
+        Debug.Log(respond);
+        RespondToPlayer(respond);
+    }
+
     private void RespondToPlayer(string tresholdValue)
     {
+        if (tresholdValue == "Enggam!")
+        {
+            Debug.Log("Hey, Jangan ku di puji!");
+            return;
+        }
+
         switch (tresholdValue)
         {
             case "Lagi Basar":
@@ -84,7 +89,7 @@ public class NumberWizard : MonoBehaviour
                 _numberWizardData.Max = _numberWizardData.OurGuess;
                 break;
             default:
-                break;
+                throw new ArgumentException("Invalid response.");
         }
 
         _numberWizardData.OurGuess = guessEngine.MakeAGuess(_numberWizardData);
