@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class NumberWizard : MonoBehaviour
 {
@@ -9,11 +9,13 @@ public class NumberWizard : MonoBehaviour
     [SerializeField]
     private int _ourGuess = 500;
 
+    private IGuessEngine guessEngine;
     private NumberWizardData _numberWizardData;
 
     void Awake()
     {
         InitWizardNumberData(_max, _min, _ourGuess);
+        guessEngine = GetComponent<IGuessEngine>();
     }
 
     void Start()
@@ -85,7 +87,7 @@ public class NumberWizard : MonoBehaviour
                 break;
         }
 
-        _numberWizardData.OurGuess = (_numberWizardData.Max + _numberWizardData.Min) / 2;
+        _numberWizardData.OurGuess = guessEngine.MakeAGuess(_numberWizardData);
         Debug.Log($"Okay, lagi basar atau damit dari {_numberWizardData.OurGuess}");
     }
 }

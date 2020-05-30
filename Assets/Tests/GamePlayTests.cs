@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
-using UnityEditor;
+﻿using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -19,9 +17,10 @@ namespace Tests
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = Color.white;
 
+            source.AddComponent<BinarySearchEngine>();
             var numberWizard = source.AddComponent<NumberWizard>();
 
-            int wait = 0; 
+            int wait = 0;
             yield return new WaitForSeconds(wait);
 
             numberWizard.InitWizardNumberData(100, 1, 500);
