@@ -23,7 +23,7 @@ namespace Tests
             int wait = 0;
             yield return new WaitForSeconds(wait);
 
-            numberWizard.InitWizardNumberData(100, 1, 500);
+            numberWizard.SetData(100, 1, 500);
 
             numberWizard.PlayerRespond("Lagi Damit");
             yield return new WaitForSeconds(wait);

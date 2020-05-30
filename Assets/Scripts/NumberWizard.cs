@@ -15,19 +15,13 @@ public class NumberWizard : MonoBehaviour
 
     void Awake()
     {
-        InitWizardNumberData(_max, _min, _ourGuess);
+        _numberWizardData = new NumberWizardData();
         guessEngine = GetComponent<IGuessEngine>();
     }
 
     void Start()
     {
-        Debug.Log("Selamat datang ke Setau Gaban.");
-        Debug.Log("Cuba pilih numbur lapas tu jangan bagi tau...");
-        Debug.Log($"Numbur paling basar: {_numberWizardData.Max}");
-        Debug.Log($"Numbur paling damit: {_numberWizardData.Min}");
-        Debug.Log($"Bagi tau kalau numbur mu lagi basar atau damit dari {_numberWizardData.OurGuess}");
-        Debug.Log("Takan arrow atas = lagi basar. Takan arrow bawah = lagi damit. Takan enter = enggam!");
-        _numberWizardData.Max += 1;
+        StartGame();
     }
 
     void Update()
@@ -35,19 +29,28 @@ public class NumberWizard : MonoBehaviour
         GetPlayerInput();
     }
 
-    public void InitWizardNumberData(int max, int min, int ourGuess)
+    public void SetData(int max, int min, int ourGuess)
     {
-        _numberWizardData = new NumberWizardData()
-        {
-            Max = max,
-            Min = min,
-            OurGuess = ourGuess
-        };
+        _max = max;
+        _min = min;
+        _ourGuess = ourGuess;
     }
 
     public int GetOurGuess()
     {
         return _numberWizardData.OurGuess;
+    }
+
+    private void StartGame()
+    {
+        _numberWizardData.InitData(_max, _min, _ourGuess);
+        Debug.Log("Selamat datang ke Setau Gaban.");
+        Debug.Log("Cuba pilih numbur lapas tu jangan bagi tau...");
+        Debug.Log($"Numbur paling basar: {_numberWizardData.Max}");
+        Debug.Log($"Numbur paling damit: {_numberWizardData.Min}");
+        Debug.Log($"Bagi tau kalau numbur mu lagi basar atau damit dari {_numberWizardData.OurGuess}");
+        Debug.Log("Takan arrow atas = lagi basar. Takan arrow bawah = lagi damit. Takan enter = enggam!");
+        _numberWizardData.Max += 1;
     }
 
     private void GetPlayerInput()
