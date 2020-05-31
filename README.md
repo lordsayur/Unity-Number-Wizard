@@ -1,7 +1,5 @@
 # Number Wizard Brunei
 
----
-
 ## Documentation and Project Management
 
 This project is using Notion for documentation and project management.
